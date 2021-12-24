@@ -8,9 +8,10 @@
       />
       <h4>{{ onerooms[누른거].title }}</h4>
       <p>{{ onerooms[누른거].content }}</p>
+
       <p>{{ onerooms[누른거].price }}</p>
       <Discount />
-      <!-- <button @click="모달창열렸니 = false">닫기</button> -->
+      <button @click="$emit('closeModal')">닫기</button>
     </div>
   </div>
 </template>
@@ -33,6 +34,11 @@ export default {
   },
   components: {
     Discount: Discount,
+  },
+  methods: {
+    sendCloseModalEvent() {
+      this.$emit('closeModal')
+    },
   },
 }
 </script>

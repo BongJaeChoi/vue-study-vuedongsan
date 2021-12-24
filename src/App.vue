@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <Modal :onerooms="onerooms" :누른거="누른거" :모달창열렸니="모달창열렸니" />
+    <Modal
+      :onerooms="onerooms"
+      :누른거="누른거"
+      :모달창열렸니="모달창열렸니"
+      @closeModal="모달창열렸니 = false"
+    />
 
     <div class="menu">
       <a v-for="(menu, i) in menus" :key="i">{{ menu }}</a>
@@ -10,7 +15,10 @@
 
     <div>
       <Card
-        @click.native="모달창열렸니 = true"
+        @openModal="
+          모달창열렸니 = true
+          누른거 = $event
+        "
         :room="room"
         v-for="room in onerooms"
         :key="room.id"
