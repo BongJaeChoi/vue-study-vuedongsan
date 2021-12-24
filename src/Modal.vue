@@ -8,16 +8,14 @@
       />
       <h4>{{ onerooms[누른거].title }}</h4>
       <p>{{ onerooms[누른거].content }}</p>
-
-      <p>{{ onerooms[누른거].price }}</p>
-      <Discount />
-      <button @click="$emit('closeModal')">닫기</button>
+      <input v-model.number="month" />
+      <p>{{ month }}개월 선택함 : {{ onerooms[누른거].price * month }}원</p>
+      <button @click="sendCloseModalEvent">닫기</button>
     </div>
   </div>
 </template>
 
 <script>
-import Discount from './Discount.vue'
 export default {
   name: 'Modal',
   props: {
@@ -27,14 +25,14 @@ export default {
   },
   data() {
     return {
+      month: 1,
+
       //부모도 쓰는 데이터라면 부모 컴포넌트에 만들기....
       //데이터를 위로 전달하는건 어렵다. 아래로 전달하는건 쉽다.
       //위로는 이벤트 전달하고 아래로는 데이터를 받자.
     }
   },
-  components: {
-    Discount: Discount,
-  },
+  components: {},
   methods: {
     sendCloseModalEvent() {
       this.$emit('closeModal')

@@ -6,7 +6,10 @@
       :모달창열렸니="모달창열렸니"
       @closeModal="모달창열렸니 = false"
     />
-
+    <div>
+      {{ 모달창열렸니 }}
+    </div>
+    <div v-if="모달창열렸니">열렸다</div>
     <div class="menu">
       <a v-for="(menu, i) in menus" :key="i">{{ menu }}</a>
     </div>
