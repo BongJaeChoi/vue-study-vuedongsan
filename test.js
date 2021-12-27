@@ -46,11 +46,7 @@ const obj = [
 ]
 
 const result = obj.flatMap(Object.keys)
-const set = new Set()
-for (const  of obj) {
-  set.add(key)
-}
-const result1 = Array.from(set)
-
-console.log(result1)
+console.log(result)
 // [david,sara, david]
+
+console.log(new Date().getHours())

@@ -18,6 +18,12 @@
 
     <Discount :이름="오브젝트.name" :나이="오브젝트.age" />
 
+    <button @click="priceSort">가격낮은순정렬</button>
+    <button @click="sortBack">되돌리기</button>
+    <button @click="priceSortDesc">가격높은순정렬</button>
+    <button @click="priceSortHangle">가나다순정렬</button>
+    <button @click="priceFilter50">50만원이하 상품만필터</button>
+
     <div>
       <Card
         @openModal="
@@ -42,6 +48,7 @@ export default {
   name: 'App',
   data() {
     return {
+      원룸들오리지널: [...onerooms],
       오브젝트: { name: 'kim', age: 20 },
       누른거: 0,
       모달창열렸니: false,
@@ -57,6 +64,23 @@ export default {
       //array index의 값 변경은 바로 바인딩이 적용이 안됨. 그렇다면 right way 는 무엇일까??
       //정답: 간단한 케이스의 경우 slice() 를 통해 새로운 배열객체를 만들어줌(얕은복사, 객체의 메모리주소만 다르고 안에 값은 아직 같음)
       //array 내 element 들이 object 일 경우 깊은복사 하자
+    },
+    priceSort() {
+      this.onerooms.sort((a, b) => a.price - b.price)
+    },
+    sortBack() {
+      this.onerooms = [...this.원룸들오리지널]
+    },
+    priceSortDesc() {
+      this.onerooms = this.onerooms.sort((a, b) => b.price - a.price)
+    },
+    priceSortHangle() {
+      this.onerooms = this.onerooms.sort(
+        (a, b) => a.content.charCodeAt() - b.content.charCodeAt()
+      )
+    },
+    priceFilter50() {
+      this.onerooms = this.onerooms.filter((item) => item.price <= 500000)
     },
   },
   components: {
