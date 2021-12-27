@@ -38,3 +38,19 @@ console.log(`${e.indexOf(' ') > 0}`)
  c : string / parseInt = NaN / false
  d : string / parseInt = 1 / false
 */
+const obj = [
+  { name: 'david' },
+  { age: '20' },
+  { name: 'sara' },
+  { name: 'david' },
+]
+
+const result = obj.flatMap(Object.keys)
+const set = new Set()
+for (const  of obj) {
+  set.add(key)
+}
+const result1 = Array.from(set)
+
+console.log(result1)
+// [david,sara, david]

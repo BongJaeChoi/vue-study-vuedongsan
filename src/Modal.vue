@@ -8,7 +8,7 @@
       />
       <h4>{{ onerooms[누른거].title }}</h4>
       <p>{{ onerooms[누른거].content }}</p>
-      <input @input="month = $event.target.value" :value="month" />
+      <input @input="onInputMonth" :value="month" />
       <p>
         {{ month }}개월 선택함 : {{ onerooms[누른거].price * Number(month) }}원
       </p>
@@ -35,9 +35,20 @@ export default {
     }
   },
   watch: {
-    month(value) {
-      this.month = value.trim()
+    // month(value) {
+    //data 영역에 있는 변수와 같은 이름을 가진 함수를 만들면 watch 발동!
+    //watch 에서 change 데이터 처리안함. 어떤 트리거 걸때만함
+    //해보니까 무한루프 처럼 동작됨. 당연하게도 그래서 띄어쓰기 같은거 검사하고 재 바인딩 할때 다시 한 번 타버리는 문제가 있음
+    //
+  },
+  components: {},
+  methods: {
+    onInputMonth(e) {
+      console.log(e.target.value)
+      this.month = e.target.value
 
+      const value = e.target.value
+      // this.month = value.trim()
       console.log(`${typeof value}`)
       if (value.indexOf(' ') >= 0) {
         alert('숫자만 입력 가능합니다.')
@@ -51,22 +62,20 @@ export default {
         return
       }
 
-      //사용자가 month 에 입력한 데이터가 13보다 크면 경고문 띄우기
-      if (value > 12) {
-        alert('13이상이면 안됨!')
+      const parseValue = Number.parseInt(value)
+      if (parseValue === 0) {
+        alert('0이면 안됨')
         this.month = '1'
         return
       }
 
-      //data 영역에 있는 변수와 같은 이름을 가진 함수를 만들면 watch 발동!
+      //사용자가 month 에 입력한 데이터가 13보다 크면 경고문 띄우기
+      if (parseValue > 12) {
+        alert('13이상이면 안됨!')
+        this.month = '1'
+        return
+      }
     },
-  },
-  components: {},
-  methods: {
-    isNumber(n) {
-      return !isNaN(parseFloat(n)) && !isNaN(n - 0)
-    },
-
     sendCloseModalEvent() {
       this.$emit('closeModal')
     },

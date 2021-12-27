@@ -54,6 +54,7 @@ export default {
       // this.reports = newArr;
       //array index의 값 변경은 바로 바인딩이 적용이 안됨. 그렇다면 right way 는 무엇일까??
       //정답: 간단한 케이스의 경우 slice() 를 통해 새로운 배열객체를 만들어줌(얕은복사, 객체의 메모리주소만 다르고 안에 값은 아직 같음)
+      //array 내 element 들이 object 일 경우 깊은복사 하자
     },
   },
   components: {
