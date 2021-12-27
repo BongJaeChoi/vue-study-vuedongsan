@@ -1,11 +1,13 @@
 <template>
   <div id="app">
-    <Modal
-      :onerooms="onerooms"
-      :누른거="누른거"
-      :모달창열렸니="모달창열렸니"
-      @closeModal="모달창열렸니 = false"
-    />
+    <transition name="fade">
+      <Modal
+        :onerooms="onerooms"
+        :누른거="누른거"
+        :모달창열렸니="모달창열렸니"
+        @closeModal="모달창열렸니 = false"
+      />
+    </transition>
     <div>
       {{ 모달창열렸니 }}
     </div>
@@ -66,6 +68,31 @@ export default {
 </script>
 
 <style>
+/* 뷰 애니메이션 xxx-enter-from.. */
+.fade-enter-from {
+  opacity: 0;
+  /* 시작 스타일 */
+}
+.fade-enter-active {
+  transition: all 1;
+}
+.fade-enter-to {
+  /* 끝 스타일 */
+  opacity: 1;
+}
+
+.fade-leave-from {
+  opacity: 0;
+  /* 시작 스타일 */
+}
+.fade-leave-active {
+  transition: all 1;
+}
+.fade-leave-to {
+  /* 끝 스타일 */
+  opacity: 1;
+}
+
 body {
   margin: 0;
 }
@@ -93,5 +120,12 @@ div {
 
 .room-img {
   width: 100%;
+}
+.start {
+  opacity: 0;
+  transition: all 1s;
+}
+.end {
+  opacity: 1;
 }
 </style>
