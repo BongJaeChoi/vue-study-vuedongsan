@@ -42,6 +42,14 @@ export default {
     //
   },
   components: {},
+  beforeUpdate() {
+    console.log('updated')
+    if (this.month === '2') {
+      alert('3개월 보다 작으면 안팝니다.')
+      this.month = 3
+      return
+    }
+  },
   methods: {
     onInputMonth(e) {
       console.log(e.target.value)
@@ -68,7 +76,6 @@ export default {
         this.month = '1'
         return
       }
-
       //사용자가 month 에 입력한 데이터가 13보다 크면 경고문 띄우기
       if (parseValue > 12) {
         alert('13이상이면 안됨!')

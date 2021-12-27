@@ -16,7 +16,7 @@
       <a v-for="(menu, i) in menus" :key="i">{{ menu }}</a>
     </div>
 
-    <Discount :이름="오브젝트.name" :나이="오브젝트.age" />
+    <Discount v-if="showDiscount == true" />
 
     <button @click="priceSort">가격낮은순정렬</button>
     <button @click="sortBack">되돌리기</button>
@@ -48,6 +48,7 @@ export default {
   name: 'App',
   data() {
     return {
+      showDiscount: true,
       원룸들오리지널: [...onerooms],
       오브젝트: { name: 'kim', age: 20 },
       누른거: 0,
